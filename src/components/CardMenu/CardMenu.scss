@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+
+.card-menu-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+
+  @media (min-width: 768px) {
+    display: none; /* No mostrar en pantallas grandes */
+  }
+
+  /* Estilos para tablet */
+  @media (min-width: 768px) {
+    justify-content: flex-start; /* Tarjetas alineadas a la izquierda */
+    flex-wrap: nowrap; /* Todas las tarjetas en una fila horizontal */
+    overflow-x: auto; /* Scroll horizontal si no caben en pantalla */
+    padding: 1rem 2rem; /* Espaciado adicional en los lados */
+    gap: 2rem; /* Mayor espacio entre tarjetas */
+    position: fixed;
+    top: 500 px;
+  }
+
+  .card-menu {
+    display: flex; /* Para estructurar contenido internamente */
+    flex-direction: column; /* Imagen y texto en columna */
+    align-items: center; /* Centrar imagen y texto horizontalmente */
+    justify-content: center; /* Centrar contenido verticalmente */
+    width: 114px;
+    height: 114px;
+    background: transparent linear-gradient(180deg, #e9f1fa 0%, #ffffff 100%) 0%
+      0% no-repeat padding-box;
+    box-shadow: 0px 5px 9px #8395a766;
+    border-radius: 10px;
+    transition: transform 0.3s;
+    opacity: 1;
+
+    &:hover {
+      transform: translateY(-10px);
+    }
+
+    .card-menu-image {
+      width: 50px; /* Tamaño consistente de la imagen */
+      height: 50px; /* Tamaño cuadrado */
+      margin-bottom: 4px; /* Separación entre la imagen y el texto */
+
+      img {
+        width: 100%; /* Imagen centrada al contenedor */
+        height: 100%;
+      }
+    }
+
+    .card-menu-content {
+      text-align: center;
+
+      h3 {
+        font-family: "Poppins", sans-serif;
+        font-size: 13px;
+        margin: 0; /* Evita márgenes innecesarios */
+        color: #333;
+      }
+    }
+  }
+}

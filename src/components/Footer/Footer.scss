@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap");
+
+.footerContainer {
+  position: relative;
+  display: flex;
+  justify-content: space-between; /* Asegura separación entre el título y la imagen */
+  align-items: center; /* Centra verticalmente los elementos */
+  width: 100%;
+  height: 167px;
+  background: transparent linear-gradient(180deg, #c2e3f3 0%, #6aa3c1 100%) 0%
+    0% no-repeat padding-box;
+  box-shadow: 4px 6px 23px #a9a9a911;
+  opacity: 1;
+  padding: 0 20px; /* Espaciado lateral para contenido */
+
+  h1 {
+    font-family: "Dancing Script", cursive;
+    font-size: 40px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  img {
+    width: 536px;
+    height: auto;
+    object-fit: contain; /* Asegura que no se deforme */
+    position: relative; /* Permite mejor control con "padding" */
+    transform: translate(20px, -10px); /* Hace que sobresalga ligeramente */
+  }
+
+  @media (max-width: 1024px) {
+    h1 {
+      font-size: 32px;
+    }
+
+    img {
+      width: 50%;
+      transform: translate(10px, -5px); /* Reduce el efecto de sobresalir */
+    }
+  }
+
+  @media (max-width: 768px) {
+    height: 70px;
+    flex-direction: row; /* Apila los elementos verticalmente */
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 15px;
+      margin-left: 10px;
+    }
+
+    img {
+      width: 50%; /* Ajusta el tamaño de la imagen */
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 20px;
+    }
+
+    img {
+      width: 228px;
+      height: auto;
+    }
+  }
+}

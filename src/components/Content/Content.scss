@@ -1,0 +1,199 @@
+.containerRecetas {
+  margin: 20px;
+  margin-bottom: 100px;
+
+  h1 {
+    font-family: "Dancing Script", cursive;
+    font-size: 3rem;
+    color: #d84a4a;
+    margin-bottom: 80px;
+    text-align: center;
+
+    @media (min-width: 768px) {
+      text-align: left;
+    }
+  }
+
+  .recetas {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 20px;
+    position: relative;
+    padding-top: 32px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+
+    @media (min-width: 1200px) {
+      justify-content: space-between;
+    }
+
+    @media (max-width: 1024px) and (min-width: 768px) {
+      flex-wrap: nowrap;
+      gap: 20px;
+      justify-content: flex-start;
+      overflow-x: auto;
+    }
+
+    @media (max-width: 768px) {
+      flex-wrap: nowrap;
+      gap: 15px;
+    }
+  }
+
+  .card-menu {
+    position: relative;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: visible;
+    text-align: center;
+    width: 250px;
+    height: 300px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 10px;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    background: transparent linear-gradient(180deg, #e9f1fa 0%, #ffffff 100%) 0%
+      0% no-repeat padding-box;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-menu-image {
+      position: absolute;
+      top: -10%; /* Ajuste para dar más espacio a la imagen y evitar que se recorte */
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: 55%; /* Aumento el tamaño de la imagen */
+      z-index: 2;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    .card-menu-titles {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      padding: 0 10px;
+
+      .title-poppins,
+      .title-dancing {
+        margin: 0 10px;
+      }
+
+      .title-poppins {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.2rem;
+        font-weight: normal;
+        color: #333;
+      }
+
+      .title-dancing {
+        font-family: "Dancing Script", cursive;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #d84a4a;
+      }
+    }
+
+    .card-menu-icons {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      padding: 0 10px;
+
+      .star,
+      .rating {
+        display: inline-block;
+        margin: 0 5px;
+      }
+
+      .rating {
+        font-size: 1.2rem;
+        margin-right: 200px;
+        font-family: "Poppins", sans-serif;
+        color: #333;
+        text-align: center;
+      }
+    }
+
+    .heart {
+      position: absolute;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      bottom: 10px;
+      right: 10px;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      z-index: 1;
+
+      img {
+        width: 25px;
+        height: 25px;
+      }
+    }
+
+    &:hover .card-menu-titles,
+    &:hover .card-menu-icons,
+    &:hover .heart {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .card-info {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+
+      p {
+        font-size: 1rem;
+        margin: 5px 0;
+      }
+
+      .info-title {
+        font-family: "Dancing Script", cursive;
+        color: #d84a4a;
+        font-weight: bold;
+      }
+
+      .info-value {
+        font-family: "Poppins", sans-serif;
+        color: #333;
+        font-weight: normal;
+      }
+
+      p + p {
+        margin-top: 10px;
+      }
+    }
+
+    &:hover .card-info {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

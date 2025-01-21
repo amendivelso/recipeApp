@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 5.5rem;
+  padding: 0 20px;
+  background-color: #fffdfd;
+  z-index: 1000;
+
+  .logo {
+    height: 50px;
+    transition: transform 0.3s;
+  }
+
+  .menu-button {
+    display: none; /* Ocultar el botón de menú por defecto */
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .nav-list {
+    display: flex; /* Menú visible en pantallas grandes */
+    list-style: none;
+    padding: 0;
+    margin-right: 50px;
+
+    li {
+      margin-left: 1.5rem;
+
+      a {
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        text-decoration: none;
+        color: #425966;
+        transition: color 0.2s;
+
+        &:hover,
+        &:focus {
+          color: #d84a4a;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    /* Cambios específicos para pantallas pequeñas */
+    .menu-button {
+      display: block;
+      margin-right: 40px; /* Mostrar el botón de menú */
+    }
+
+    .nav-list {
+      display: none; /* Ocultar el menú en pantallas pequeñas por defecto */
+      flex-direction: column;
+      position: absolute;
+      top: 5.5rem;
+      right: 0;
+      background-color: #fffdfd;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+
+      &.open {
+        display: flex; /* Mostrar el menú cuando se active */
+      }
+
+      li {
+        margin: 10px 0;
+      }
+    }
+  }
+}

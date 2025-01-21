@@ -1,0 +1,92 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap");
+
+.firstContainer {
+  /* Imagen de fondo */
+  background: url("../../assets/Images/bcq.png") no-repeat center center/cover;
+  width: 100vw; /* Ancho completo de la pantalla */
+  height: 416px; /* Altura fija inicial */
+  position: relative; /* Contexto para hijos */
+  overflow: hidden; /* Prevenir desbordamiento inesperado */
+
+  .secondContainer,
+  .thirdContainer {
+    position: absolute; /* Requiere top y left */
+    width: 300px;
+    height: 79px;
+    text-align: left;
+  }
+
+  .secondContainer {
+    top: 130px;
+    left: 261px;
+
+    h1 {
+      font-family: "Poppins", sans-serif;
+      font-size: 74px;
+      line-height: 1.5;
+      color: #ffffff;
+      margin: 0;
+      opacity: 1;
+    }
+  }
+
+  .thirdContainer {
+    top: 120px;
+    left: 261px;
+
+    h2 {
+      font-family: "Dancing Script", cursive;
+      font-weight: 700;
+      font-size: 69px;
+      color: #eee8e8;
+    }
+  }
+
+  /* Media queries */
+  @media (max-width: 768px) {
+    height: 250px; /* Mantén altura razonable en dispositivos medianos */
+    background-size: cover; /* Ocupa todo el espacio */
+    background-position: center;
+
+    .secondContainer {
+      top: 60px;
+      left: 120px;
+
+      h1 {
+        font-size: 50px; /* Escala proporcional */
+      }
+    }
+
+    .thirdContainer {
+      top: 65px;
+      left: 120px;
+
+      h2 {
+        font-size: 48px;
+      }
+    }
+  }
+
+  @media (max-width: 428px) {
+    height: 220px;
+
+    .secondContainer {
+      top: 70px;
+      left: 40px;
+
+      h1 {
+        font-size: 34px;
+      }
+    }
+
+    .thirdContainer {
+      top: 73px;
+      left: 40px;
+
+      h2 {
+        font-size: 30px;
+      }
+    }
+  }
+}
