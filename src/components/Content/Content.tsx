@@ -1,12 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./Content.scss";
-import Ojingeo from "../../assets/Images/ic_ojingeo_muchim.png";
-import colaChicken from "../../assets/Images/ic_cola_chicken.png";
-import sweetCherries from "../../assets/Images/ic_cherries.png";
-import roastedCarrot from "../../assets/Images/ic_roasted_carrot.png";
 import star from "../../assets/Images/ic_star.svg";
 import heart from "../../assets/Images/ic_heart.svg";
 
+// Interface para la receta
 interface RecipeInfo {
   portion: string;
   prepTime: string;
@@ -21,57 +19,6 @@ interface CardData {
   icons: string[];
   info: RecipeInfo;
 }
-
-const cardsData: CardData[] = [
-  {
-    id: 1,
-    image: Ojingeo,
-    titles: ["Ojingeo", "Muchim"],
-    rating: "5.0",
-    icons: [star, heart],
-    info: {
-      portion: "Grande",
-      prepTime: "30 mins",
-      difficulty: "Moderada",
-    },
-  },
-  {
-    id: 2,
-    image: sweetCherries,
-    titles: ["Sweet", "Cherries"],
-    rating: "4.0",
-    icons: [star, heart],
-    info: {
-      portion: "Pequeña",
-      prepTime: "15 mins",
-      difficulty: "Fácil",
-    },
-  },
-  {
-    id: 3,
-    image: roastedCarrot,
-    titles: ["Roasted", "Carrot"],
-    rating: "4.5",
-    icons: [star, heart],
-    info: {
-      portion: "Mediana",
-      prepTime: "40 mins",
-      difficulty: "Moderada",
-    },
-  },
-  {
-    id: 4,
-    image: colaChicken,
-    titles: ["Cola", "Chicken"],
-    rating: "5.0",
-    icons: [star, heart],
-    info: {
-      portion: "Grande",
-      prepTime: "50 mins",
-      difficulty: "Difícil",
-    },
-  },
-];
 
 const CardMenu: React.FC<{ data: CardData }> = ({ data }) => (
   <div className="card-menu">
@@ -102,15 +49,72 @@ const CardMenu: React.FC<{ data: CardData }> = ({ data }) => (
   </div>
 );
 
-const ContainerRecetas: React.FC = () => (
-  <div className="containerRecetas">
-    <h1>Nuevas Recetas</h1>
-    <div className="recetas">
-      {cardsData.map((card) => (
-        <CardMenu key={card.id} data={card} />
-      ))}
+const ContainerRecetas: React.FC = () => {
+  const [recipes, setRecipes] = useState<CardData[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>("");
+
+  // Llamada a la API de Spoonacular
+  useEffect(() => {
+    const fetchRecipes = async () => {
+      try {
+        const response = await axios.get(
+          "https://api.spoonacular.com/recipes/random?number=4&apiKey=7ea3b34835e34bc29744d486b13c3dfc"
+        );
+        const data = response.data.recipes;
+
+        // Mapear los datos que devuelve la API para ajustarlos a nuestra estructura
+        interface SpoonacularRecipe {
+          image: string;
+          title: string;
+          healthScore: number;
+          servings: number;
+          readyInMinutes: number;
+          difficulty?: string;
+        }
+
+        const formattedData = data.map(
+          (recipe: SpoonacularRecipe, index: number) => ({
+            id: index + 1,
+            image: recipe.image,
+            titles: recipe.title.split(" "),
+            rating: recipe.healthScore.toString(),
+            icons: [star, heart],
+            info: {
+              portion: recipe.servings > 1 ? "Grande" : "Pequeña", // A modo de ejemplo
+              prepTime: recipe.readyInMinutes + " mins",
+              difficulty: recipe.difficulty || "Moderada",
+            },
+          })
+        );
+
+        setRecipes(formattedData);
+        setLoading(false);
+      } catch {
+        setError("Error al cargar las recetas");
+        setLoading(false);
+      }
+    };
+
+    fetchRecipes();
+  }, []);
+
+  return (
+    <div className="containerRecetas">
+      <h1>Nuevas Recetas</h1>
+      {loading ? (
+        <div>Cargando...</div>
+      ) : error ? (
+        <div>{error}</div>
+      ) : (
+        <div className="recetas">
+          {recipes.map((card) => (
+            <CardMenu key={card.id} data={card} />
+          ))}
+        </div>
+      )}
     </div>
-  </div>
-);
+  );
+};
 
 export default ContainerRecetas;
